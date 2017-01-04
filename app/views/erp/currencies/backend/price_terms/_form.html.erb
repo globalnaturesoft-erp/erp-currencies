@@ -1,0 +1,48 @@
+<%= form_for([erp_currencies, :backend, price_term]) do |f| %>    
+    <%= erp_form_control("text", {
+        name: 'price_term[name]',
+        value: price_term.name,                   
+        label: t('.name'),
+        required: true,
+        errors: price_term.errors.full_messages_for(:name)
+    }) %>
+    <%= erp_form_control("text", {
+        name: 'price_term[code]',
+        value: price_term.code,                   
+        label: t('.code'),
+        required: true,
+        errors: price_term.errors.full_messages_for(:code)
+    }) %>
+    <%= erp_form_control('select', {
+        label: t('.use_for'),
+        name: 'price_term[use_for]',
+        value: price_term.use_for,
+        options: Erp::Currencies::PriceTerm.get_use_for_options(),
+        required: true,
+        errors: price_term.errors.full_messages_for(:use_for)
+    }) %>
+    <%= erp_form_control("dataselect", {
+        name: 'price_term[currency_id]',
+        value: price_term.currency_id,
+        text: price_term.currency_name,
+        placeholder: t('.choose_currency'),
+        label: t('.currency'),
+        url: erp_currencies.dataselect_backend_currencies_path(format: 'json'),
+        create: {
+            url: erp_currencies.new_backend_currency_path,
+            title: t('.create_currency'),
+            container_selector: '.new_currency',
+            input_selector: 'input[name="currency[name]"]'
+        },
+        required: true,
+        errors: price_term.errors.full_messages_for(:currency_id)
+    }) %>
+    <hr>
+    <%= erp_component('button/save', {
+        text: t('submit')
+    }) %>
+    <%= erp_component('button/cancel', {
+        text: t('cancel'),
+        href: erp_currencies.backend_price_terms_path
+    }) %>
+<% end %>

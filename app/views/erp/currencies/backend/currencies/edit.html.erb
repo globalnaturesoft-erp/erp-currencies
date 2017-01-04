@@ -1,0 +1,33 @@
+<% content_for :title do %>
+    <%= @currency.name %>
+<% end %>
+
+<% content_for :page_title do %>    
+    <a href="<%= erp_currencies.backend_currencies_path %>">
+    <i class="fa fa-list"></i> <%= t('.currencies') %>
+    </a> / <%= @currency.name %>
+<% end %>
+
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create'),
+        href: erp_currencies.new_backend_currency_path,
+        class: 'btn-sm'
+    }) %>
+<% end %>
+
+<div class="row">
+    <div class="col-md-6">
+        <% if @currency.errors.any? %>
+            <%= erp_form_control("form_error_message") %>
+        <% end %>
+        
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-body">
+                <%= render 'form', currency: @currency %>
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
+</div>

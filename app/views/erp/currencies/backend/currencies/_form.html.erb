@@ -1,0 +1,23 @@
+<%= form_for([erp_currencies, :backend, currency]) do |f| %>    
+    <%= erp_form_control("text", {
+        name: 'currency[name]',
+        value: currency.name,                   
+        label: t('.name'),
+        required: true,
+        errors: currency.errors.full_messages_for(:name)
+    }) %>
+    <%= erp_form_control("text", {
+        name: 'currency[code]',
+        value: currency.code,                   
+        label: t('.code'),
+        required: true,
+        errors: currency.errors.full_messages_for(:code)
+    }) %>
+    <%= erp_component('button/save', {
+        text: t('submit')
+    }) %>
+    <%= erp_component('button/cancel', {
+        text: t('cancel'),
+        href: erp_currencies.backend_currencies_path
+    }) %>
+<% end %>

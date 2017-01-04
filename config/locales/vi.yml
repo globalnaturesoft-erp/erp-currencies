@@ -1,0 +1,110 @@
+vi:
+  layouts:
+    erp:
+      backend:
+        sidebar:
+          currency: "Tiền tệ"
+          price_term: "Chính sách giá"
+  erp:
+    currencies:
+      backend:
+        price_terms:
+          create:
+            success: "Thêm chính sách giá thành công."
+          update:
+            success: "Cập nhật chính sách giá thành công."
+          destroy:
+            success: "Xóa chính sách giá thành công."
+          delete_all:
+            success: "Xóa chính sách giá được chọn thành công."
+          archive_all:
+            success: "Ẩn chính sách giá được chọn thành công."
+          unarchive_all:
+            success: "Hiện chính sách giá được chọn thành công."
+          index:
+            price_terms: "Chính sách giá"
+            create: "Thêm chính sách giá"
+            price_term_archived: "Chính sách giá đã bị ẩn"
+            delete: "Xóa chính sách giá"
+            name: "Tên"
+            code: "Mã"
+            currency: "Tiền tệ"
+            use_for: "Hình thức sử dụng"
+          list:
+            name: "Tên"
+            code: "Mã"
+            currency: "Tiền tệ"
+            use_for: "Hình thức sử dụng"
+            delete: "Xóa chính sách giá"
+            no_matching_records_found: "Danh sách chính sách giá hiện tại đang trống."
+          new:
+            price_terms: "Chính sách giá"
+            create: "Thêm chính sách giá"
+          edit:
+            price_terms: "Chính sách giá"
+            create: "Thêm chính sách giá"
+          form:
+            name: "Tên"
+            code: "Mã"
+            currency: "Tiền tệ"
+            use_for: "Hình thức sử dụng"
+            choose_currency: "Chọn loại tiền tệ"
+        currencies:
+          create:
+            success: "Thêm tiền tệ thành công."
+          update:
+            success: "Cập nhật tiền tệ thành công."
+          destroy:
+            success: "Xóa tiền tệ thành công."
+          delete_all:
+            success: "Xóa tiền tệ được chọn thành công."
+          archive_all:
+            success: "Ẩn tiền tệ được chọn thành công."
+          unarchive_all:
+            success: "Hiện tiền tệ được chọn thành công."
+          index:
+            currencies: "Tiền tệ"
+            create: "Thêm tiền tệ"
+            currency_archived: "Tiền tệ đã bị ẩn"
+            delete: "Xóa tiền tệ"
+            name: "Tên"
+            code: "Mã"
+          list:
+            name: "Tên"
+            code: "Mã"
+            delete: "Xóa tiền tệ"
+            no_matching_records_found: "Danh sách tiền tệ hiện tại đang trống."
+          new:
+            currencies: "Tiền tệ"
+            create: "Thêm tiền tệ"
+          edit:
+            currencies: "Tiền tệ"
+            create: "Thêm tiền tệ mới"
+          form:
+            name: "Tên"
+            code: "Mã"
+  activerecord:
+    errors:
+      models:
+        erp/currencies/currency:
+          attributes:
+            name:
+              blank: "không được trống."
+            code:
+              blank: "không được trống."
+        erp/currencies/price_term:
+          attributes:
+            name:
+              blank: "không được trống."
+            code:
+              blank: "không được trống."
+            currency_id:
+              blank: "không được trống."
+    attributes:
+      erp/currencies/currency:
+        name: "Tên"
+        code: "Mã"
+      erp/currencies/price_term:
+        name: "Tên"
+        code: "Mã"
+        currency_id: "Tiền tệ"

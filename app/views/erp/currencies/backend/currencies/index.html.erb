@@ -1,0 +1,68 @@
+<% content_for :title do %>
+    <%= t('.currencies') %>
+<% end %>
+
+<% content_for :page_title do %>
+    <i class="fa fa-file-text-o"></i> <%= t('.currencies') %>
+<% end %>
+
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create'),
+        href: erp_currencies.new_backend_currency_path,
+        class: 'btn-sm'
+    }) %>
+<% end %>
+
+<%= erp_datalist(
+    url: erp_currencies.list_backend_currencies_path,
+    keywords: [
+        {
+            text: t('.name'), name: 'erp_currencies_currencies.name'
+        }
+    ],
+    actions: [
+        {
+            text: '<i class="fa fa-eye-slash"></i> '+t('archive'),
+            url: erp_currencies.archive_all_backend_currencies_path,
+            data_method: 'PUT'
+        },
+        {
+            text: '<i class="fa fa-eye"></i> '+t('unarchive'),
+            url: erp_currencies.unarchive_all_backend_currencies_path,
+            data_method: 'PUT'
+        },
+        {
+            divider: true
+        },
+        {
+            text: '<i class="fa fa-trash"></i> '+t('.delete'),
+            url: erp_currencies.delete_all_backend_currencies_path,
+            data_method: 'DELETE',
+            data_confirm: t('delete_confirm')
+        }
+    ],
+    filters: [
+        {
+            text: t('.currency_archived'), name: 'show_archived', value: true, checked: false
+        },
+    ],
+    columns: [
+        {
+            text: t('.name'), name: 'name', value: true, checked: true
+        },
+        {
+            text: t('.code'), name: 'code', value: true, checked: true
+        },
+        {
+            text: t('status'), name: 'status', value: true, checked: true
+        },
+        {
+            text: t('creator'), name: 'creator', value: true, checked: false
+        },
+        {
+            text: t('created_at'), name: 'created_at', value: true, checked: true
+        }
+    ],
+    sort: { sort_by: 'erp_currencies_currencies.name', sort_direction: 'asc' }
+) %>
