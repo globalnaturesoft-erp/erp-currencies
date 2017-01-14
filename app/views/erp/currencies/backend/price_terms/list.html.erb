@@ -1,121 +1,121 @@
-<div class="">
-    <table class="table table-advance table-hover table-striped table-checkable order-column" id="">
-        <thead>
-            <tr>
-                <th width='1%'>
-                    <%= erp_datalist_check_all %>
+<table class="table table-advance table-hover table-striped table-checkable order-column">
+    <thead>
+        <tr>
+            <th width='1%'>
+                <%= erp_datalist_check_all %>
+            </th>
+            <% if get_columns(params).include?("name") %>
+                <th class="sortable" sort-by='erp_payments_price_terms.name'>
+                    <%= t('.name') %>
                 </th>
+            <% end %>
+            <% if get_columns(params).include?("code") %>
+                <th>
+                    <%= t('.code') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("currency") %>
+                <th>
+                    <%= t('.currency') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("use_for") %>
+                <th>
+                    <%= t('.use_for') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("status") %>
+                <th>
+                    <%= t('status') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("creator") %>
+                <th>
+                    <%= t('creator') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("created_at") %>
+                <th class="sortable" sort-by='erp_payments_price_terms.created_at'>
+                    <%= t('created_at') %>
+                </th>
+            <% end %>
+            <th width="7%"><%= t('actions') %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if @price_terms.each do |price_term| %>
+            <tr class="odd gradeX">
+                <td>
+                    <%= erp_datalist_check_row(id: price_term.id) %>
+                </td>
                 <% if get_columns(params).include?("name") %>
-                    <th class="sortable" sort-by='erp_payments_price_terms.name'>
-                        <%= t('.name') %>
-                    </th>
+                    <td><%= link_to price_term.name, erp_currencies.edit_backend_price_term_path(price_term) %></td>
                 <% end %>
                 <% if get_columns(params).include?("code") %>
-                    <th>
-                        <%= t('.code') %>
-                    </th>
+                    <td><%= price_term.code %></td>
                 <% end %>
                 <% if get_columns(params).include?("currency") %>
-                    <th>
-                        <%= t('.currency') %>
-                    </th>
+                    <td><%= price_term.currency_name %></td>
                 <% end %>
                 <% if get_columns(params).include?("use_for") %>
-                    <th>
-                        <%= t('.use_for') %>
-                    </th>
+                    <td><%= t(price_term.use_for) %></td>
                 <% end %>
                 <% if get_columns(params).include?("status") %>
-                    <th>
-                        <%= t('status') %>
-                    </th>
+                <td>
+                    <% if price_term.archived == true %>
+                    <span class="label label-sm label-danger"><%= t('archived') %></span>
+                    <% else %>
+                    <span class="label label-sm label-success"><%= t('active') %></span>
+                    <% end %> 
+                </td>
                 <% end %>
                 <% if get_columns(params).include?("creator") %>
-                    <th>
-                        <%= t('creator') %>
-                    </th>
+                    <td></td>
                 <% end %>
                 <% if get_columns(params).include?("created_at") %>
-                    <th class="sortable" sort-by='erp_payments_price_terms.created_at'>
-                        <%= t('created_at') %>
-                    </th>
+                    <td><%= price_term.created_at.strftime("%d/%m/%Y") %></td>
                 <% end %>
-                <th width="7%"><%= t('actions') %></th>
+                <td>
+                    <%= erp_datalist_row_actions(
+                        [
+                            {
+                                text: '<i class="fa fa-edit"></i> '+t('edit'),
+                                href: erp_currencies.edit_backend_price_term_path(price_term)
+                            },
+                            {
+                                text: '<i class="fa fa-eye-slash"></i> '+t('archive'),
+                                url: erp_currencies.archive_backend_price_terms_path(id: price_term),
+                                data_method: 'PUT',
+                                hide: price_term.archived,
+                                class: 'ajax-link'
+                            },
+                            {
+                                text: '<i class="fa fa-eye"></i> '+t('unarchive'),
+                                url: erp_currencies.unarchive_backend_price_terms_path(id: price_term),
+                                data_method: 'PUT',
+                                hide: !price_term.archived,
+                                class: 'ajax-link'
+                            },
+                            {
+                                divider: true
+                            },
+                            {
+                                text: '<i class="fa fa-trash"></i> '+t('.delete'),
+                                url: erp_currencies.backend_price_term_path(price_term),
+                                data_method: 'DELETE',
+                                class: 'ajax-link',
+                                data_confirm: t('delete_confirm')
+                            }
+                        ]
+                    ) %>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <% if @price_terms.each do |price_term| %>
-                <tr class="odd gradeX">
-                    <td>
-                        <%= erp_datalist_check_row(id: price_term.id) %>
-                    </td>
-                    <% if get_columns(params).include?("name") %>
-                        <td><%= link_to price_term.name, erp_currencies.edit_backend_price_term_path(price_term) %></td>
-                    <% end %>
-                    <% if get_columns(params).include?("code") %>
-                        <td><%= price_term.code %></td>
-                    <% end %>
-                    <% if get_columns(params).include?("currency") %>
-                        <td><%= price_term.currency_name %></td>
-                    <% end %>
-                    <% if get_columns(params).include?("use_for") %>
-                        <td><%= t(price_term.use_for) %></td>
-                    <% end %>
-                    <% if get_columns(params).include?("status") %>
-                    <td>
-                        <% if price_term.archived == true %>
-                        <span class="label label-sm label-danger"><%= t('archived') %></span>
-                        <% else %>
-                        <span class="label label-sm label-success"><%= t('active') %></span>
-                        <% end %> 
-                    </td>
-                    <% end %>
-                    <% if get_columns(params).include?("creator") %>
-                        <td></td>
-                    <% end %>
-                    <% if get_columns(params).include?("created_at") %>
-                        <td><%= price_term.created_at.strftime("%d/%m/%Y") %></td>
-                    <% end %>
-                    <td>
-                        <%= erp_datalist_row_actions(
-                            [
-                                {
-                                    text: '<i class="fa fa-edit"></i> '+t('edit'),
-                                    href: erp_currencies.edit_backend_price_term_path(price_term)
-                                },
-                                {
-                                    text: '<i class="fa fa-eye-slash"></i> '+t('archive'),
-                                    url: erp_currencies.archive_backend_price_terms_path(id: price_term),
-                                    data_method: 'PUT',
-                                    class: 'ajax-link'
-                                },
-                                {
-                                    text: '<i class="fa fa-eye"></i> '+t('unarchive'),
-                                    url: erp_currencies.unarchive_backend_price_terms_path(id: price_term),
-                                    data_method: 'PUT',
-                                    class: 'ajax-link'
-                                },
-                                {
-                                    divider: true
-                                },
-                                {
-                                    text: '<i class="fa fa-trash"></i> '+t('.delete'),
-                                    url: erp_currencies.backend_price_term_path(price_term),
-                                    data_method: 'DELETE',
-                                    class: 'ajax-link',
-                                    data_confirm: t('delete_confirm')
-                                }
-                            ]
-                        ) %>
-                    </td>
-                </tr>
-            <% end.empty? %>
-                <tr>
-                    <td colspan="7"><%= t('.no_matching_records_found') %></td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
-</div>
+        <% end.empty? %>
+            <tr>
+                <td colspan="7"><%= t('.no_matching_records_found') %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
         
 <%= erp_datalist_pagination(@price_terms) %>

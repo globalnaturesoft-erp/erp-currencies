@@ -4,15 +4,14 @@
 
 <% content_for :page_title do %>    
     <a href="<%= erp_currencies.backend_currencies_path %>">
-    <i class="fa fa-list"></i> <%= t('.currencies') %>
+    <i class="fa fa-money"></i> <%= t('.currencies') %>
     </a> / <%= @currency.name %>
 <% end %>
 
 <% content_for :page_toolbar do %>
     <%= erp_component('button/create', {
         text: t('.create'),
-        href: erp_currencies.new_backend_currency_path,
-        class: 'btn-sm'
+        href: erp_currencies.new_backend_currency_path
     }) %>
 <% end %>
 

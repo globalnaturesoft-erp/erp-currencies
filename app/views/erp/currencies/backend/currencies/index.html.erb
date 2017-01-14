@@ -3,14 +3,13 @@
 <% end %>
 
 <% content_for :page_title do %>
-    <i class="fa fa-file-text-o"></i> <%= t('.currencies') %>
+    <i class="fa fa-money"></i> <%= t('.currencies') %>
 <% end %>
 
 <% content_for :page_toolbar do %>
     <%= erp_component('button/create', {
         text: t('.create'),
-        href: erp_currencies.new_backend_currency_path,
-        class: 'btn-sm'
+        href: erp_currencies.new_backend_currency_path
     }) %>
 <% end %>
 
