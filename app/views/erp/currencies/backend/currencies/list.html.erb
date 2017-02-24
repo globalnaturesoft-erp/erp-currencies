@@ -33,7 +33,7 @@
         </tr>
     </thead>
     <tbody>
-        <% if @currencies.each do |currency| %>
+        <% @currencies.each do |currency| %>
             <tr class="odd gradeX">
                 <td>
                     <%= erp_datalist_check_row(id: currency.id) %>
@@ -71,14 +71,14 @@
                                 href: erp_currencies.edit_backend_currency_path(currency)
                             },
                             {
-                                text: '<i class="fa fa-eye-slash"></i> '+t('archive'),
+                                text: '<i class="fa fa-remove"></i> '+t('archive'),
                                 url: erp_currencies.archive_backend_currencies_path(id: currency),
                                 data_method: 'PUT',
                                 hide: currency.archived,
                                 class: 'ajax-link'
                             },
                             {
-                                text: '<i class="fa fa-eye"></i> '+t('unarchive'),
+                                text: '<i class="fa fa-check"></i> '+t('unarchive'),
                                 url: erp_currencies.unarchive_backend_currencies_path(id: currency),
                                 data_method: 'PUT',
                                 hide: !currency.archived,
@@ -98,12 +98,10 @@
                     ) %>
                 </td>
             </tr>
-        <% end.empty? %>
-            <tr>
-                <td colspan="7"><%= t('.no_matching_records_found') %></td>
-            </tr>
         <% end %>
     </tbody>
 </table>
-        
+<% if @currencies.empty? %>
+    <div class="datalist-empty-line"><%= t('.no_matching_records_found') %></div>
+<% end %>   
 <%= erp_datalist_pagination(@currencies) %>

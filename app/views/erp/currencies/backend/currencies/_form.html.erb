@@ -3,6 +3,8 @@
         name: 'currency[name]',
         value: currency.name,                   
         label: t('.name'),
+        help: t('.help_currency_name'),
+        placeholder: t('.placeholder_currency_name'),
         required: true,
         errors: currency.errors.full_messages_for(:name)
     }) %>
@@ -10,6 +12,8 @@
         name: 'currency[code]',
         value: currency.code,                   
         label: t('.code'),
+        help: t('.help_currency_code'),
+        placeholder: t('.placeholder_currency_code'),
         required: true,
         errors: currency.errors.full_messages_for(:code)
     }) %>

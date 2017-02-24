@@ -3,6 +3,8 @@
         name: 'price_term[name]',
         value: price_term.name,                   
         label: t('.name'),
+        help: t('.help_price_term_name'),
+        placeholder: t('.placeholder_price_term_name'),
         required: true,
         errors: price_term.errors.full_messages_for(:name)
     }) %>
@@ -10,13 +12,16 @@
         name: 'price_term[code]',
         value: price_term.code,                   
         label: t('.code'),
+        help: t('.help_price_term_code'),
+        placeholder: t('.placeholder_price_term_code'),
         required: true,
         errors: price_term.errors.full_messages_for(:code)
     }) %>
     <%= erp_form_control('select', {
-        label: t('.use_for'),
         name: 'price_term[use_for]',
         value: price_term.use_for,
+        label: t('.use_for'),
+        help: t('.help_price_term_use_for'),
         options: Erp::Currencies::PriceTerm.get_use_for_options(),
         required: true,
         errors: price_term.errors.full_messages_for(:use_for)
@@ -27,6 +32,7 @@
         text: price_term.currency_name,
         placeholder: t('.choose_currency'),
         label: t('.currency'),
+        help: t('.help_price_term_currency'),
         url: erp_currencies.dataselect_backend_currencies_path(format: 'json'),
         create: {
             url: erp_currencies.new_backend_currency_path,

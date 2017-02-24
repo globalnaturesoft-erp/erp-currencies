@@ -1,7 +1,6 @@
 module Erp::Currencies
   class PriceTerm < ApplicationRecord
 		validates :name, :code, :currency_id, :use_for, :presence => true
-		
     belongs_to :creator, class_name: "Erp::User"
     belongs_to :currency
     

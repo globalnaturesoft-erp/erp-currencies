@@ -1,7 +1,6 @@
 module Erp::Currencies
   class Currency < ApplicationRecord
 		validates :name, :code, :presence => true
-		
     belongs_to :creator, class_name: "Erp::User"
     
     # Filters

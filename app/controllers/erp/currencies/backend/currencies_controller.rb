@@ -1,5 +1,3 @@
-require_dependency "erp/backend/backend_controller"
-
 module Erp
   module Currencies
     module Backend
@@ -79,10 +77,10 @@ module Erp
           end
         end
         
+        # ARCHIVE /currencies/archive_all?id=1
         def archive
           @currency.archive
           respond_to do |format|
-            format.html { redirect_to erp_currencies.backend_currencies_path, notice: t('.success') }
             format.json {
               render json: {
                 'message': t('.success'),
@@ -92,10 +90,10 @@ module Erp
           end
         end
         
+        # UNARCHIVE /currencies/unarchive?id=1
         def unarchive
           @currency.unarchive
           respond_to do |format|
-            format.html { redirect_to erp_currencies.backend_currencies_path, notice: t('.success') }
             format.json {
               render json: {
                 'message': t('.success'),
@@ -105,7 +103,7 @@ module Erp
           end
         end
         
-        # DELETE /currencies/delete_all?ids=1,2,3
+        # DELETE ALL /currencies/delete_all?ids=1,2,3
         def delete_all         
           @currencies.destroy_all
           
@@ -119,7 +117,7 @@ module Erp
           end          
         end
         
-        # Archive /currencies/archive_all?ids=1,2,3
+        # ARCHIVE ALL /currencies/archive_all?ids=1,2,3
         def archive_all         
           @currencies.archive_all
           
@@ -133,7 +131,7 @@ module Erp
           end          
         end
         
-        # Unarchive /currencies/unarchive_all?ids=1,2,3
+        # UNARCHIVE ALL /currencies/unarchive_all?ids=1,2,3
         def unarchive_all
           @currencies.unarchive_all
           
@@ -147,6 +145,7 @@ module Erp
           end          
         end
         
+        # DATASELECT
         def dataselect
           respond_to do |format|
             format.json {

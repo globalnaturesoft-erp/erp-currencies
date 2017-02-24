@@ -16,19 +16,18 @@ vi:
           destroy:
             success: "Xóa chính sách giá thành công."
           archive:
-            success: "Ẩn chính sách giá thành công."
+            success: "Ngưng sử dụng chính sách giá thành công."
           unarchive:
-            success: "Hiện chính sách giá thành công."
+            success: "Sử dụng lại chính sách giá thành công."
           delete_all:
             success: "Xóa chính sách giá được chọn thành công."
           archive_all:
-            success: "Ẩn chính sách giá được chọn thành công."
+            success: "Ngưng sử dụng chính sách giá được chọn thành công."
           unarchive_all:
-            success: "Hiện chính sách giá được chọn thành công."
+            success: "Sử dụng lại chính sách giá được chọn thành công."
           index:
             price_terms: "Chính sách giá"
             create: "Thêm chính sách giá"
-            price_term_archived: "Chính sách giá đã bị ẩn"
             delete: "Xóa chính sách giá"
             name: "Tên"
             code: "Mã"
@@ -49,9 +48,15 @@ vi:
             create: "Thêm chính sách giá"
           form:
             name: "Tên"
+            help_price_term_name: "Tên chính sách giá"
+            placeholder_price_term_name: "Nhập tên chính sách giá"
             code: "Mã"
-            currency: "Đơn vị tiền tệ"
+            help_price_term_code: "Mã chính sách giá"
+            placeholder_price_term_code: "Nhập mã chính sách giá"
             use_for: "Hình thức sử dụng"
+            help_price_term_use_for: "Hình thức sử dụng của chính sách giá"
+            currency: "Đơn vị tiền tệ"
+            help_price_term_currency: "Đơn vị tiền tệ sử dụng cho chính sách giá"
             choose_currency: "Chọn loại đơn vị tiền tệ"
         currencies:
           create:
@@ -61,19 +66,18 @@ vi:
           destroy:
             success: "Xóa đơn vị tiền tệ thành công."
           archive:
-            success: "Ẩn đơn vị tiền tệ thành công."
+            success: "Ngưng sử dụng đơn vị tiền tệ thành công."
           unarchive:
-            success: "Hiện đơn vị tiền tệ thành công."
+            success: "Sử dụng lại đơn vị tiền tệ thành công."
           delete_all:
             success: "Xóa đơn vị tiền tệ được chọn thành công."
           archive_all:
-            success: "Ẩn đơn vị tiền tệ được chọn thành công."
+            success: "Ngưng sử dụng đơn vị tiền tệ được chọn thành công."
           unarchive_all:
-            success: "Hiện đơn vị tiền tệ được chọn thành công."
+            success: "Sử dụng lại đơn vị tiền tệ được chọn thành công."
           index:
             currencies: "Đơn vị tiền tệ"
             create: "Thêm đơn vị tiền tệ"
-            currency_archived: "Đơn vị tiền tệ đã bị ẩn"
             delete: "Xóa đơn vị tiền tệ"
             name: "Tên"
             code: "Mã"
@@ -90,7 +94,11 @@ vi:
             create: "Thêm đơn vị tiền tệ"
           form:
             name: "Tên"
+            help_currency_name: "Tên đơn vị tiền tệ"
+            placeholder_currency_name: "Nhập tên đơn vị tiền tệ"
             code: "Mã"
+            help_currency_code: "Mã đơn vị tiền tệ"
+            placeholder_currency_code: "Nhập mã đơn vị tiền tệ"
   activerecord:
     errors:
       models:
@@ -111,8 +119,8 @@ vi:
     attributes:
       erp/currencies/currency:
         name: "Tên đơn vị tiền tệ"
-        code: "Mã"
+        code: "Mã đơn vị tiền tệ"
       erp/currencies/price_term:
         name: "Tên chính sách giá"
-        code: "Mã"
+        code: "Mã đơn vị tiền tệ"
         currency_id: "Đơn vị tiền tệ"

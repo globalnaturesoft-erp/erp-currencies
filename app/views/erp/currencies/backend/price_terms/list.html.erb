@@ -43,7 +43,7 @@
         </tr>
     </thead>
     <tbody>
-        <% if @price_terms.each do |price_term| %>
+        <% @price_terms.each do |price_term| %>
             <tr class="odd gradeX">
                 <td>
                     <%= erp_datalist_check_row(id: price_term.id) %>
@@ -87,14 +87,14 @@
                                 href: erp_currencies.edit_backend_price_term_path(price_term)
                             },
                             {
-                                text: '<i class="fa fa-eye-slash"></i> '+t('archive'),
+                                text: '<i class="fa fa-remove"></i> '+t('archive'),
                                 url: erp_currencies.archive_backend_price_terms_path(id: price_term),
                                 data_method: 'PUT',
                                 hide: price_term.archived,
                                 class: 'ajax-link'
                             },
                             {
-                                text: '<i class="fa fa-eye"></i> '+t('unarchive'),
+                                text: '<i class="fa fa-check"></i> '+t('unarchive'),
                                 url: erp_currencies.unarchive_backend_price_terms_path(id: price_term),
                                 data_method: 'PUT',
                                 hide: !price_term.archived,
@@ -114,12 +114,10 @@
                     ) %>
                 </td>
             </tr>
-        <% end.empty? %>
-            <tr>
-                <td colspan="7"><%= t('.no_matching_records_found') %></td>
-            </tr>
         <% end %>
     </tbody>
 </table>
-        
+<% if @price_terms.empty? %>
+    <div class="datalist-empty-line"><%= t('.no_matching_records_found') %></div>
+<% end %>
 <%= erp_datalist_pagination(@price_terms) %>

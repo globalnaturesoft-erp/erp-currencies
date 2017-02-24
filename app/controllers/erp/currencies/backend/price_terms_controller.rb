@@ -1,5 +1,3 @@
-require_dependency "erp/backend/backend_controller"
-
 module Erp
   module Currencies
     module Backend
@@ -79,10 +77,10 @@ module Erp
           end
         end
         
+        # ARCHIVE /price_terms/archive?id=1
         def archive
           @price_term.archive
           respond_to do |format|
-            format.html { redirect_to erp_currencies.backend_price_terms_path, notice: t('.success') }
             format.json {
               render json: {
                 'message': t('.success'),
@@ -92,10 +90,10 @@ module Erp
           end
         end
         
+        # UNARCHIVE /price_terms/archive?id=1
         def unarchive
           @price_term.unarchive
           respond_to do |format|
-            format.html { redirect_to erp_currencies.backend_price_terms_path, notice: t('.success') }
             format.json {
               render json: {
                 'message': t('.success'),
@@ -105,7 +103,7 @@ module Erp
           end
         end
         
-        # DELETE /price_terms/delete_all?ids=1,2,3
+        # DELETE ALL /price_terms/delete_all?ids=1,2,3
         def delete_all         
           @price_terms.destroy_all
           
@@ -119,7 +117,7 @@ module Erp
           end          
         end
         
-        # Archive /price_terms/archive_all?ids=1,2,3
+        # ARCHIVE ALL /price_terms/archive_all?ids=1,2,3
         def archive_all         
           @price_terms.archive_all
           
@@ -133,7 +131,7 @@ module Erp
           end          
         end
         
-        # Unarchive /price_terms/unarchive_all?ids=1,2,3
+        # UNARCHIVE ALL /price_terms/unarchive_all?ids=1,2,3
         def unarchive_all
           @price_terms.unarchive_all
           
@@ -147,6 +145,7 @@ module Erp
           end          
         end
         
+        # DATASELECT
         def dataselect
           respond_to do |format|
             format.json {
